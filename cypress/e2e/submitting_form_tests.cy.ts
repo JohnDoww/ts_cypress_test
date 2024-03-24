@@ -1,4 +1,4 @@
-import {BasePage} from "../support/pages/BasePage";
+import {HomePage} from "../support/pages/HomePage";
 import testData from "../fixtures/testData.json";
 import {faker} from '@faker-js/faker';
 
@@ -9,7 +9,7 @@ Cypress.config('defaultCommandTimeout', 10000);
  * Tests were created by using test design techniques(such as boundary values, pairwise and equivalent partitions).
  */
 
-const basePage: BasePage = new BasePage();
+const basePage: HomePage = new HomePage();
 
 beforeEach(() => {
     cy.openHomePage();
@@ -68,11 +68,8 @@ describe('Testing the submit form on the home page', () => {
     })
 
     describe("Validation tests", () => {
-        //
-
-        /////// there is a trouble
         testData.forEach(dataFromJson => {
-            it.only(`Subject field validation checks ${dataFromJson.testData.nameTest}`, () => {
+            it(`Subject field validation checks ${dataFromJson.testData.nameTest} - ${dataFromJson.testData.subject} characters`, () => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(dataFromJson.testData.subject);
 
                 basePage.fillInNameField();

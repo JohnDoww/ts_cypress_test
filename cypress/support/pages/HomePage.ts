@@ -7,7 +7,7 @@ import {faker} from '@faker-js/faker';
  * by setting the argument while calling the methods.
  */
 
-export class BasePage {
+export class HomePage {
     elements: { [key: string]: string };
     defaultValues: { [key: string]: string };
 
