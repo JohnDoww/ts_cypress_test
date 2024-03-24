@@ -28,10 +28,19 @@
  * There is a file for creating custom commands.
  */
 
+import {faker} from "@faker-js/faker";
+
 /**
  * This command allows me to open the home page and assert the url easily.
  */
 Cypress.Commands.add('openHomePage', ()=>{
     cy.visit('/')
     cy.url().should('eq', 'https://automationintesting.online/')
+})
+
+Cypress.Commands.add('generateString',(length:number):string=>{
+    return faker.string.alpha(length);
+})
+Cypress.Commands.add('generatePhoneNumber',(length:number):string=>{
+    return faker.string.numeric(length);
 })

@@ -1,4 +1,5 @@
 import {faker} from '@faker-js/faker';
+import requirementsSubmitForm from "../../fixtures/requirementsSubmitForm.json";
 
 /**
  * There is a class where I store methods, web element selectors and variables which
@@ -24,16 +25,20 @@ export class HomePage {
         this.elements.alertOfSubmitingForm = '.alert-danger';
 
         this.defaultValues = {};
-        this.defaultValues.nameDefaultValidValue = faker.string.alpha(1);
-        this.defaultValues.emailDefaultValidValue = 'e@a.a';
-        this.defaultValues.phoneDefaultValidValue = faker.phone.number().slice(0, 11);
-        this.defaultValues.subjectDefaultValidValue = faker.string.alpha(5);
-        this.defaultValues.messageDefaultValidValue = faker.string.alpha(20);
+        // this.defaultValues.nameDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.name);
+        // this.defaultValues.emailDefaultValidValue = requirementsSubmitForm.minValidSizeValue.email;
+        // this.defaultValues.phoneDefaultValidValue = cy.generatePhoneNumber(requirementsSubmitForm.minValidSizeValue.phone);
+        // this.defaultValues.subjectDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.subject);
+        // this.defaultValues.messageDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.message);
         this.defaultValues.textOfAlerForEmptyField = ' may not be blank';
         this.defaultValues.charactersWrongAmountSubjectFieldAlert = 'Subject must be between 5 and 100 characters.';
         this.defaultValues.charactersWrongAmountPhoneFieldAlert = 'Phone must be between 11 and 21 characters.';
         this.defaultValues.charactersWrongAmountMessageFieldAlert = 'Message must be between 20 and 2000 characters.';
     }
+
+    // public const adds:string = cy.generateString(requirementsSubmitForm.minValidSizeValue.name);
+
+
 
     /**
      *This method fill in the Name field of the submit form.
@@ -75,7 +80,7 @@ export class HomePage {
      *This method fill in the Subject field of the submit form.
      * Also, there are assertions about displayed field name and data which we inputted.
      */
-    fillInSubjectField(subject: string = this.defaultValues.subjectDefaultValidValue): void {
+    fillInSubjectField(subject: string): void {
         cy.get(this.elements.subjectField)
             .clear()
             .should("have.attr", 'aria-label', 'Subject')

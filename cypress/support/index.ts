@@ -1,5 +1,7 @@
 declare namespace Cypress{
     interface Chainable{
-        openHomePage:()=>void
+        openHomePage:()=>void;
+        generateString:(length:number)=>string;
+        generatePhoneNumber:(length:number)=>string;
     }
 }
