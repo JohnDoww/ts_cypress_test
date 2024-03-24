@@ -1,0 +1,17 @@
+[
+  {
+    "testData": {
+      "nameTest": "max value",
+      "subject": 101,
+      "phone": 22,
+      "message": 201
+    }
+  },
+  {
+    "testData":{
+      "nameTest":"min value",
+      "subject": 4,
+      "phone": 10,
+      "message": 19}
+ }
+]
