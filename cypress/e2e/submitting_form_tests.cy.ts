@@ -1,64 +1,81 @@
+/**
+ * Before the running execute the command:
+ * npm install
+ *
+ * To generate report execute the command:
+ * cypress run
+ */
 import {HomePage} from "../support/pages/HomePage";
 import requirementsSubmitForm from "../fixtures/requirementsSubmitForm.json";
-
-Cypress.config('defaultCommandTimeout', 10000);
+import {faker} from "@faker-js/faker";
 
 /**
  * There is a file with automation tests. There I covered all requirements for Submit forms.
  * Tests were created by using test design techniques(such as boundary values, pairwise and equivalent partitions).
  */
 
+
 const basePage: HomePage = new HomePage();
 
-    Cypress.config('defaultCommandTimeout', 10000);
-    let minValidValueName:string = cy.generateString(jsonData.minValidSizeValue.name);
-//     let minValidValueEmail:string =  requirementsSubmitForm.minValidSizeValue.email;
-//     let minValidValuePhone:string = cy.generatePhoneNumber(requirementsSubmitForm.minValidSizeValue.phone);
-//     let minValidValueSubject:string = cy.generateString(requirementsSubmitForm.minValidSizeValue.subject);
-//     let minValidValueMessage:string = cy.generateString(requirementsSubmitForm.minValidSizeValue.message);
-//
-// let maxSizeName: string = cy.generateString(requirementsSubmitForm.maxValidSizeValue.name);
-// let maxSizeEmail: string = requirementsSubmitForm.maxValidSizeValue.email;
-// let maxSizePhone: string = cy.generatePhoneNumber(requirementsSubmitForm.maxValidSizeValue.phone);
-// let maxSizeSubject: string = cy.generateString(requirementsSubmitForm.maxValidSizeValue.subject);
-// let maxSizeMessage: string = cy.generateString(requirementsSubmitForm.maxValidSizeValue.message);
+let minValidValueName: string;
+let minValidValueEmail: string;
+let minValidValuePhone: string;
+let minValidValueSubject: string;
+let minValidValueMessage: string;
 
-beforeEach(() => {
+let maxValidSizeName: string;
+let maxValidSizeEmail: string;
+let maxValidSizePhone: string;
+let maxValidSizeSubject: string;
+let maxValidSizeMessage: string;
+
+beforeEach((): void => {
+    minValidValueName = faker.string.alpha(requirementsSubmitForm.minValidSizeValue.name);
+    minValidValueEmail = requirementsSubmitForm.minValidSizeValue.email;
+    minValidValuePhone = faker.string.numeric(requirementsSubmitForm.minValidSizeValue.phone);
+    minValidValueSubject = faker.string.alpha(requirementsSubmitForm.minValidSizeValue.subject);
+    minValidValueMessage = faker.string.alpha(requirementsSubmitForm.minValidSizeValue.message);
+
+    maxValidSizeName = faker.string.alpha(requirementsSubmitForm.maxValidSizeValue.name);
+    maxValidSizeEmail = requirementsSubmitForm.maxValidSizeValue.email;
+    maxValidSizePhone = faker.string.numeric(requirementsSubmitForm.maxValidSizeValue.phone);
+    maxValidSizeSubject = faker.string.alpha(requirementsSubmitForm.maxValidSizeValue.subject);
+    maxValidSizeMessage = faker.string.alpha(requirementsSubmitForm.maxValidSizeValue.message);
+
     cy.openHomePage();
 })
 
-describe('Testing the submit form on the home page', () => {
+describe('Testing the submit form on the home page', (): void => {
 
-    describe("Submitting the form", () => {
+    describe("Submitting the form", (): void => {
         it('Submit the form by using MINIMUM amount of the characters for the fields', () => {
             basePage.fillInNameField(minValidValueName);
-            // basePage.fillInEmailField(minValidValueEmail);
-            // basePage.fillInPhoneField(minValidValuePhone);
-            // basePage.fillInSubjectField(minValidValueSubject);
-            // basePage.fillInMessageInputArea(minValidValueMessage);
+            basePage.fillInEmailField(minValidValueEmail);
+            basePage.fillInPhoneField(minValidValuePhone);
+            basePage.fillInSubjectField(minValidValueSubject);
+            basePage.fillInMessageInputArea(minValidValueMessage);
 
             basePage.submitTheForm();
 
-            basePage.checkSuccessSubmitFromMessage();
+            basePage.checkSuccessSubmitFromMessage(minValidValueName, minValidValueSubject);
         })
 
-        // it('Submit the form by using MAXIMUM amount of the characters for the fields', () => {
-        //     // We don't have information about MAX amount of characters for: name and email fields.
-        //     // So, let max amount be 20 for the both fields
-        //     // By the way, if we submit the form where the name fields has 400 characters - the server get 500 status code.
-        //
-        //     basePage.fillInNameField(maxSizeName);
-        //     basePage.fillInEmailField(maxSizeEmail);
-        //     basePage.fillInPhoneField(maxSizePhone);
-        //     basePage.fillInSubjectField(maxSizeSubject);
-        //     basePage.fillInMessageInputArea(maxSizeMessage);
-        //
-        //     basePage.submitTheForm();
-        //
-        //     basePage.checkSuccessSubmitFromMessage(maxSizeName, maxSizeSubject);
-        // })
+        it('Submit the form by using MAXIMUM amount of the characters for the fields', (): void => {
+            // We don't have information about MAX amount of characters for: name and email fields.
+            // So, let max amount be 20 for the both fields
 
-        it('Submit the empty form', () => {
+            basePage.fillInNameField(maxValidSizeName);
+            basePage.fillInEmailField(maxValidSizeEmail);
+            basePage.fillInPhoneField(maxValidSizePhone);
+            basePage.fillInSubjectField(maxValidSizeSubject);
+            basePage.fillInMessageInputArea(maxValidSizeMessage);
+
+            basePage.submitTheForm();
+
+            basePage.checkSuccessSubmitFromMessage(maxValidSizeName, maxValidSizeSubject);
+        })
+
+        it('Submit the empty form', (): void => {
             basePage.submitTheForm();
 
             basePage.checkAlertForTheEmptyField('name');
@@ -67,27 +84,106 @@ describe('Testing the submit form on the home page', () => {
             basePage.checkAlertForTheEmptyField('subject');
             basePage.checkAlertForTheEmptyField('email');
 
-            basePage.checkAlerAboutWrongAmountOfCharactersForField('message');
-            basePage.checkAlerAboutWrongAmountOfCharactersForField('phone');
-            basePage.checkAlerAboutWrongAmountOfCharactersForField('subject');
+            basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+            basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+            basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
         })
 
     })
 
-    // describe("Validation tests", () => {
-    //     requirementsSubmitForm.forEach(dataFromJson => {
-    //         it(`Subject field validation checks ${dataFromJson.wrongSizeValue.nameTest} - ${dataFromJson.wrongSizeValue.subject} characters`, () => {
-    //             let valueOutOfRequiredSize: string = cy.generateString(dataFromJson.wrongSizeValue.subject);
-    //
-    //             basePage.fillInNameField();
-    //             basePage.fillInEmailField();
-    //             basePage.fillInPhoneField();
-    //             basePage.fillInSubjectField(valueOutOfRequiredSize);
-    //             basePage.fillInMessageInputArea();
-    //
-    //             basePage.submitTheForm();
-    //             basePage.checkAlerAboutWrongAmountOfCharactersForField('subject');
-    //         })
-    //     })
-    // })
+    describe('Validation tests', (): void => {
+
+        describe('Check LOWER boundary values for fields', (): void => {
+            it(`Subject field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.subject} characters`, () => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.subject);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+                basePage.fillInPhoneField(minValidValuePhone);
+
+                basePage.fillInSubjectField(valueOutOfRequiredSize);
+
+                basePage.fillInMessageInputArea(minValidValueMessage);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
+            })
+
+            it(`Phone field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.phone} characters`, (): void => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.phone);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+
+                basePage.fillInPhoneField(valueOutOfRequiredSize);
+
+                basePage.fillInSubjectField(minValidValueSubject);
+                basePage.fillInMessageInputArea(minValidValueMessage);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+            })
+
+            it(`Message field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.message} characters`, (): void => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.message);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+                basePage.fillInPhoneField(minValidValuePhone);
+                basePage.fillInSubjectField(minValidValueSubject);
+
+                basePage.fillInMessageInputArea(valueOutOfRequiredSize);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+            })
+
+        })
+
+        describe('Check UPPER boundary values for fields', (): void => {
+            it(`Subject field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.subject} characters`, (): void => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.subject);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+                basePage.fillInPhoneField(minValidValuePhone);
+
+                basePage.fillInSubjectField(valueOutOfRequiredSize);
+
+                basePage.fillInMessageInputArea(minValidValueMessage);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
+            })
+
+            it(`Phone field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.phone} characters`, (): void => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.phone);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+
+                basePage.fillInPhoneField(valueOutOfRequiredSize);
+
+                basePage.fillInSubjectField(minValidValueSubject);
+                basePage.fillInMessageInputArea(minValidValueMessage);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+            })
+
+            it(`Message field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.message} characters`, (): void => {
+                let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.message);
+
+                basePage.fillInNameField(minValidValueName);
+                basePage.fillInEmailField(minValidValueEmail);
+                basePage.fillInPhoneField(minValidValuePhone);
+                basePage.fillInSubjectField(minValidValueSubject);
+
+                basePage.fillInMessageInputArea(valueOutOfRequiredSize);
+
+                basePage.submitTheForm();
+                basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+            })
+        })
+    })
 })

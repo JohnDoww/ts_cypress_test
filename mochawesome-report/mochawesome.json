@@ -1,0 +1,330 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 9,
+    "passes": 9,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-03-25T12:04:35.118Z",
+    "end": "2024-03-25T12:06:07.096Z",
+    "duration": 91978,
+    "testsRegistered": 9,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ac1be7f7-3d3d-4f14-ac22-c1691e218bd9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\submitting_form_tests.cy.ts",
+      "file": "cypress\\e2e\\submitting_form_tests.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0031833a-c14d-4410-9cf2-bf68063db1e3",
+          "title": "Testing the submit form on the home page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "a4e1d441-ea20-4776-ae02-260a1cebac44",
+              "title": "Submitting the form",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Submit the form by using MINIMUM amount of the characters for the fields",
+                  "fullTitle": "Testing the submit form on the home page Submitting the form Submit the form by using MINIMUM amount of the characters for the fields",
+                  "timedOut": null,
+                  "duration": 4884,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "basePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(minValidValuePhone);\nbasePage.fillInSubjectField(minValidValueSubject);\nbasePage.fillInMessageInputArea(minValidValueMessage);\nbasePage.submitTheForm();\nbasePage.checkSuccessSubmitFromMessage(minValidValueName, minValidValueSubject);",
+                  "err": {},
+                  "uuid": "b5ecc67c-1368-4b27-9cc3-9585d92a7bbe",
+                  "parentUUID": "a4e1d441-ea20-4776-ae02-260a1cebac44",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Submit the form by using MAXIMUM amount of the characters for the fields",
+                  "fullTitle": "Testing the submit form on the home page Submitting the form Submit the form by using MAXIMUM amount of the characters for the fields",
+                  "timedOut": null,
+                  "duration": 37611,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// We don't have information about MAX amount of characters for: name and email fields.\n// So, let max amount be 20 for the both fields\nbasePage.fillInNameField(maxValidSizeName);\nbasePage.fillInEmailField(maxValidSizeEmail);\nbasePage.fillInPhoneField(maxValidSizePhone);\nbasePage.fillInSubjectField(maxValidSizeSubject);\nbasePage.fillInMessageInputArea(maxValidSizeMessage);\nbasePage.submitTheForm();\nbasePage.checkSuccessSubmitFromMessage(maxValidSizeName, maxValidSizeSubject);",
+                  "err": {},
+                  "uuid": "ea9871ed-fd20-4535-be48-9b72dc946e31",
+                  "parentUUID": "a4e1d441-ea20-4776-ae02-260a1cebac44",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Submit the empty form",
+                  "fullTitle": "Testing the submit form on the home page Submitting the form Submit the empty form",
+                  "timedOut": null,
+                  "duration": 983,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "basePage.submitTheForm();\nbasePage.checkAlertForTheEmptyField('name');\nbasePage.checkAlertForTheEmptyField('message');\nbasePage.checkAlertForTheEmptyField('phone');\nbasePage.checkAlertForTheEmptyField('subject');\nbasePage.checkAlertForTheEmptyField('email');\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('message');\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('phone');\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('subject');",
+                  "err": {},
+                  "uuid": "1b5dd8e6-df18-4519-8325-37461567e43f",
+                  "parentUUID": "a4e1d441-ea20-4776-ae02-260a1cebac44",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "b5ecc67c-1368-4b27-9cc3-9585d92a7bbe",
+                "ea9871ed-fd20-4535-be48-9b72dc946e31",
+                "1b5dd8e6-df18-4519-8325-37461567e43f"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 43478,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "f28e26c3-4ef6-48de-a3f1-d4d8ab151833",
+              "title": "Validation tests",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "8f7f5d1f-0993-4b05-ae81-4bba9fed7d6e",
+                  "title": "Check LOWER boundary values for fields",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Subject field - less than required value - 4 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check LOWER boundary values for fields Subject field - less than required value - 4 characters",
+                      "timedOut": null,
+                      "duration": 2098,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMinSizeValue.subject);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(minValidValuePhone);\nbasePage.fillInSubjectField(valueOutOfRequiredSize);\nbasePage.fillInMessageInputArea(minValidValueMessage);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('subject');",
+                      "err": {},
+                      "uuid": "e66928c2-d3d0-405c-a5d5-4831c60d0b92",
+                      "parentUUID": "8f7f5d1f-0993-4b05-ae81-4bba9fed7d6e",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Phone field - less than required value - 10 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check LOWER boundary values for fields Phone field - less than required value - 10 characters",
+                      "timedOut": null,
+                      "duration": 2027,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMinSizeValue.phone);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(valueOutOfRequiredSize);\nbasePage.fillInSubjectField(minValidValueSubject);\nbasePage.fillInMessageInputArea(minValidValueMessage);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('phone');",
+                      "err": {},
+                      "uuid": "84ee3fb6-3ead-4e41-bd44-512fd5c93480",
+                      "parentUUID": "8f7f5d1f-0993-4b05-ae81-4bba9fed7d6e",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Message field - less than required value - 19 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check LOWER boundary values for fields Message field - less than required value - 19 characters",
+                      "timedOut": null,
+                      "duration": 1962,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMinSizeValue.message);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(minValidValuePhone);\nbasePage.fillInSubjectField(minValidValueSubject);\nbasePage.fillInMessageInputArea(valueOutOfRequiredSize);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('message');",
+                      "err": {},
+                      "uuid": "8f58ba60-ab60-48a9-b191-7d8887ebe3b2",
+                      "parentUUID": "8f7f5d1f-0993-4b05-ae81-4bba9fed7d6e",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "e66928c2-d3d0-405c-a5d5-4831c60d0b92",
+                    "84ee3fb6-3ead-4e41-bd44-512fd5c93480",
+                    "8f58ba60-ab60-48a9-b191-7d8887ebe3b2"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 6087,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "91eddc7b-0925-454e-8f1b-1532a97f1e13",
+                  "title": "Check UPPER boundary values for fields",
+                  "fullFile": "",
+                  "file": "",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Subject field - extra 1 value - 101 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check UPPER boundary values for fields Subject field - extra 1 value - 101 characters",
+                      "timedOut": null,
+                      "duration": 3762,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMaxSizeValue.subject);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(minValidValuePhone);\nbasePage.fillInSubjectField(valueOutOfRequiredSize);\nbasePage.fillInMessageInputArea(minValidValueMessage);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('subject');",
+                      "err": {},
+                      "uuid": "45af09d1-fde7-49ef-ad53-fbe7c90c6565",
+                      "parentUUID": "91eddc7b-0925-454e-8f1b-1532a97f1e13",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Phone field - extra 1 value - 22 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check UPPER boundary values for fields Phone field - extra 1 value - 22 characters",
+                      "timedOut": null,
+                      "duration": 2185,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMaxSizeValue.phone);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(valueOutOfRequiredSize);\nbasePage.fillInSubjectField(minValidValueSubject);\nbasePage.fillInMessageInputArea(minValidValueMessage);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('phone');",
+                      "err": {},
+                      "uuid": "a5e41247-5a51-43b7-9c4a-f4a150607994",
+                      "parentUUID": "91eddc7b-0925-454e-8f1b-1532a97f1e13",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Message field - extra 1 value - 2001 characters",
+                      "fullTitle": "Testing the submit form on the home page Validation tests Check UPPER boundary values for fields Message field - extra 1 value - 2001 characters",
+                      "timedOut": null,
+                      "duration": 35882,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "let valueOutOfRequiredSize = faker_1.faker.string.alpha(requirementsSubmitForm_json_1.default.wrongMaxSizeValue.message);\nbasePage.fillInNameField(minValidValueName);\nbasePage.fillInEmailField(minValidValueEmail);\nbasePage.fillInPhoneField(minValidValuePhone);\nbasePage.fillInSubjectField(minValidValueSubject);\nbasePage.fillInMessageInputArea(valueOutOfRequiredSize);\nbasePage.submitTheForm();\nbasePage.checkAlertAboutWrongAmountOfCharactersForField('message');",
+                      "err": {},
+                      "uuid": "a9e0c75c-4b77-409c-ac48-0ba61ad4e41b",
+                      "parentUUID": "91eddc7b-0925-454e-8f1b-1532a97f1e13",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "45af09d1-fde7-49ef-ad53-fbe7c90c6565",
+                    "a5e41247-5a51-43b7-9c4a-f4a150607994",
+                    "a9e0c75c-4b77-409c-ac48-0ba61ad4e41b"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 41829,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,11 +1,6 @@
-import {faker} from '@faker-js/faker';
-import requirementsSubmitForm from "../../fixtures/requirementsSubmitForm.json";
-
 /**
- * There is a class where I store methods, web element selectors and variables which
- * I will use through testing this page.
- * All methods, which fill in the submit form fields, they have the default value, but we also can set any value,
- * by setting the argument while calling the methods.
+ * There is a class where I store methods and web element selectors
+ * which I will use through testing this page.
  */
 
 export class HomePage {
@@ -25,26 +20,17 @@ export class HomePage {
         this.elements.alertOfSubmitingForm = '.alert-danger';
 
         this.defaultValues = {};
-        // this.defaultValues.nameDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.name);
-        // this.defaultValues.emailDefaultValidValue = requirementsSubmitForm.minValidSizeValue.email;
-        // this.defaultValues.phoneDefaultValidValue = cy.generatePhoneNumber(requirementsSubmitForm.minValidSizeValue.phone);
-        // this.defaultValues.subjectDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.subject);
-        // this.defaultValues.messageDefaultValidValue = cy.generateString(requirementsSubmitForm.minValidSizeValue.message);
         this.defaultValues.textOfAlerForEmptyField = ' may not be blank';
         this.defaultValues.charactersWrongAmountSubjectFieldAlert = 'Subject must be between 5 and 100 characters.';
         this.defaultValues.charactersWrongAmountPhoneFieldAlert = 'Phone must be between 11 and 21 characters.';
         this.defaultValues.charactersWrongAmountMessageFieldAlert = 'Message must be between 20 and 2000 characters.';
     }
 
-    // public const adds:string = cy.generateString(requirementsSubmitForm.minValidSizeValue.name);
-
-
-
     /**
      *This method fill in the Name field of the submit form.
      * Also, there are assertions about displayed field name and data which we inputted.
      */
-    fillInNameField(name: string = this.defaultValues.nameDefaultValidValue): void {
+    fillInNameField(name: string): void {
         cy.get(this.elements.nameField)
             .should("have.attr", 'aria-label', 'Name')
             .type(name)
@@ -56,7 +42,7 @@ export class HomePage {
      *This method fill in the Email field of the submit form.
      * Also, there are assertions about displayed field name and data which we inputted.
      */
-    fillInEmailField(email: string = this.defaultValues.emailDefaultValidValue): void {
+    fillInEmailField(email: string): void {
         cy.get(this.elements.emailField)
             .should("have.attr", 'aria-label', 'Email')
             .type(email)
@@ -68,7 +54,7 @@ export class HomePage {
      *This method fill in the Phone field of the submit form.
      * Also, there are assertions about displayed field name and data which we inputted.
      */
-    fillInPhoneField(phone: string = this.defaultValues.phoneDefaultValidValue): void {
+    fillInPhoneField(phone: string): void {
         cy.get(this.elements.phoneField)
             .should("have.attr", 'aria-label', 'Phone')
             .type(phone)
@@ -92,7 +78,7 @@ export class HomePage {
      *This method fill in the Message field of the submit form.
      * Also, there are assertions about displayed field name and data which we inputted.
      */
-    fillInMessageInputArea(message: string = this.defaultValues.messageDefaultValidValue): void {
+    fillInMessageInputArea(message: string): void {
         cy.get(this.elements.messageInputArea)
             .should("have.text", 'Message')
             .type(message)
@@ -111,10 +97,9 @@ export class HomePage {
 
     /**
      *This method checks that we display exactly data which user inputted for the Name and the Subject fields.
-     * There also, default arguments, but we can send custom.
-     * Also, we check the header of the success message, after submitting the form.
+     * There we check the header of the success message, after submitting the form.
      */
-    checkSuccessSubmitFromMessage(userName: string = this.defaultValues.nameDefaultValidValue, userSubject: string = this.defaultValues.subjectDefaultValidValue): void {
+    checkSuccessSubmitFromMessage(userName: string, userSubject: string): void {
         cy.get(this.elements.successSubmitFormHeader)
             .should('have.text', `Thanks for getting in touch ${userName}!`);
 
@@ -130,6 +115,7 @@ export class HomePage {
      */
     checkAlertForTheEmptyField(nameOfField: string): void {
 
+        // @ts-ignore
         switch (nameOfField.toLowerCase()) {
             case 'message': {
                 nameOfField = 'Message';
@@ -167,9 +153,10 @@ export class HomePage {
      * This method check error message for certain field, where value to long or to short, while submitting the form.
      * When we send wrong nameOfFiled as an argument for that field - method will log it to the Cypress console.
      */
-    checkAlerAboutWrongAmountOfCharactersForField(nameOfField:string){
-        let expectedAlertMessage:string='';
+    checkAlertAboutWrongAmountOfCharactersForField(nameOfField: string):void {
+        let expectedAlertMessage: string = '';
 
+        // @ts-ignore
         switch (nameOfField.toLowerCase()) {
             case 'message': {
                 expectedAlertMessage = this.defaultValues.charactersWrongAmountMessageFieldAlert;

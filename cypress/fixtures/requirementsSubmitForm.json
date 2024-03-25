@@ -1,38 +1,30 @@
-[
-  {
-    "wrongSizeValue": {
-      "nameTest": "extra 1 value",
-      "phone": 22,
-      "subject": 101,
-      "message": 201
-    }
+{
+  "wrongMaxSizeValue": {
+    "nameTest": "extra 1 value",
+    "phone": 22,
+    "subject": 101,
+    "message": 2001
   },
-  {
-    "wrongSizeValue": {
-      "nameTest": "less than required value",
-      "phone": 10,
-      "subject": 4,
-      "message": 19
-    }
+  "wrongMinSizeValue": {
+    "nameTest": "less than required value",
+    "phone": 10,
+    "subject": 4,
+    "message": 19
   },
-  {
-    "minValidSizeValue": {
-      "nameTest": "min required value size",
-      "name": 1,
-      "email": "e@a.a",
-      "phone": 11,
-      "subject": 5,
-      "message": 20
-    }
+  "minValidSizeValue": {
+    "nameTest": "min required value size",
+    "name": 1,
+    "email": "e@a.a",
+    "phone": 11,
+    "subject": 5,
+    "message": 20
   },
-  {
-    "maxValidSizeValue": {
-      "nameTest": "max required value size",
-      "name": 20,
-      "email": "heyHeyHey@whoYou.are",
-      "phone": 20,
-      "subject": 100,
-      "message": 2000
-    }
+  "maxValidSizeValue": {
+    "nameTest": "max required value size",
+    "name": 20,
+    "email": "heyHeyHey@whoYou.are",
+    "phone": 21,
+    "subject": 100,
+    "message": 2000
   }
-]
+}
