@@ -15,7 +15,7 @@ import {faker} from "@faker-js/faker";
  */
 
 
-const basePage: HomePage = new HomePage();
+const homePage: HomePage = new HomePage();
 
 let minValidValueName: string;
 let minValidValueEmail: string;
@@ -49,44 +49,44 @@ describe('Testing the submit form on the home page', (): void => {
 
     describe("Submitting the form", (): void => {
         it('Submit the form by using MINIMUM amount of the characters for the fields', () => {
-            basePage.fillInNameField(minValidValueName);
-            basePage.fillInEmailField(minValidValueEmail);
-            basePage.fillInPhoneField(minValidValuePhone);
-            basePage.fillInSubjectField(minValidValueSubject);
-            basePage.fillInMessageInputArea(minValidValueMessage);
+            homePage.fillInNameField(minValidValueName);
+            homePage.fillInEmailField(minValidValueEmail);
+            homePage.fillInPhoneField(minValidValuePhone);
+            homePage.fillInSubjectField(minValidValueSubject);
+            homePage.fillInMessageInputArea(minValidValueMessage);
 
-            basePage.submitTheForm();
+            homePage.submitTheForm();
 
-            basePage.checkSuccessSubmitFromMessage(minValidValueName, minValidValueSubject);
+            homePage.checkSuccessSubmitFromMessage(minValidValueName, minValidValueSubject);
         })
 
         it('Submit the form by using MAXIMUM amount of the characters for the fields', (): void => {
             // We don't have information about MAX amount of characters for: name and email fields.
             // So, let max amount be 20 for the both fields
 
-            basePage.fillInNameField(maxValidSizeName);
-            basePage.fillInEmailField(maxValidSizeEmail);
-            basePage.fillInPhoneField(maxValidSizePhone);
-            basePage.fillInSubjectField(maxValidSizeSubject);
-            basePage.fillInMessageInputArea(maxValidSizeMessage);
+            homePage.fillInNameField(maxValidSizeName);
+            homePage.fillInEmailField(maxValidSizeEmail);
+            homePage.fillInPhoneField(maxValidSizePhone);
+            homePage.fillInSubjectField(maxValidSizeSubject);
+            homePage.fillInMessageInputArea(maxValidSizeMessage);
 
-            basePage.submitTheForm();
+            homePage.submitTheForm();
 
-            basePage.checkSuccessSubmitFromMessage(maxValidSizeName, maxValidSizeSubject);
+            homePage.checkSuccessSubmitFromMessage(maxValidSizeName, maxValidSizeSubject);
         })
 
         it('Submit the empty form', (): void => {
-            basePage.submitTheForm();
+            homePage.submitTheForm();
 
-            basePage.checkAlertForTheEmptyField('name');
-            basePage.checkAlertForTheEmptyField('message');
-            basePage.checkAlertForTheEmptyField('phone');
-            basePage.checkAlertForTheEmptyField('subject');
-            basePage.checkAlertForTheEmptyField('email');
+            homePage.checkAlertForTheEmptyField('name');
+            homePage.checkAlertForTheEmptyField('message');
+            homePage.checkAlertForTheEmptyField('phone');
+            homePage.checkAlertForTheEmptyField('subject');
+            homePage.checkAlertForTheEmptyField('email');
 
-            basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
-            basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
-            basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
+            homePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+            homePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+            homePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
         })
 
     })
@@ -97,45 +97,45 @@ describe('Testing the submit form on the home page', (): void => {
             it(`Subject field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.subject} characters`, () => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.subject);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
-                basePage.fillInPhoneField(minValidValuePhone);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInPhoneField(minValidValuePhone);
 
-                basePage.fillInSubjectField(valueOutOfRequiredSize);
+                homePage.fillInSubjectField(valueOutOfRequiredSize);
 
-                basePage.fillInMessageInputArea(minValidValueMessage);
+                homePage.fillInMessageInputArea(minValidValueMessage);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
             })
 
             it(`Phone field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.phone} characters`, (): void => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.phone);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
 
-                basePage.fillInPhoneField(valueOutOfRequiredSize);
+                homePage.fillInPhoneField(valueOutOfRequiredSize);
 
-                basePage.fillInSubjectField(minValidValueSubject);
-                basePage.fillInMessageInputArea(minValidValueMessage);
+                homePage.fillInSubjectField(minValidValueSubject);
+                homePage.fillInMessageInputArea(minValidValueMessage);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
             })
 
             it(`Message field - ${requirementsSubmitForm.wrongMinSizeValue.nameTest} - ${requirementsSubmitForm.wrongMinSizeValue.message} characters`, (): void => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMinSizeValue.message);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
-                basePage.fillInPhoneField(minValidValuePhone);
-                basePage.fillInSubjectField(minValidValueSubject);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInPhoneField(minValidValuePhone);
+                homePage.fillInSubjectField(minValidValueSubject);
 
-                basePage.fillInMessageInputArea(valueOutOfRequiredSize);
+                homePage.fillInMessageInputArea(valueOutOfRequiredSize);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('message');
             })
 
         })
@@ -144,45 +144,45 @@ describe('Testing the submit form on the home page', (): void => {
             it(`Subject field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.subject} characters`, (): void => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.subject);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
-                basePage.fillInPhoneField(minValidValuePhone);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInPhoneField(minValidValuePhone);
 
-                basePage.fillInSubjectField(valueOutOfRequiredSize);
+                homePage.fillInSubjectField(valueOutOfRequiredSize);
 
-                basePage.fillInMessageInputArea(minValidValueMessage);
+                homePage.fillInMessageInputArea(minValidValueMessage);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('subject');
             })
 
             it(`Phone field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.phone} characters`, (): void => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.phone);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
 
-                basePage.fillInPhoneField(valueOutOfRequiredSize);
+                homePage.fillInPhoneField(valueOutOfRequiredSize);
 
-                basePage.fillInSubjectField(minValidValueSubject);
-                basePage.fillInMessageInputArea(minValidValueMessage);
+                homePage.fillInSubjectField(minValidValueSubject);
+                homePage.fillInMessageInputArea(minValidValueMessage);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('phone');
             })
 
             it(`Message field - ${requirementsSubmitForm.wrongMaxSizeValue.nameTest} - ${requirementsSubmitForm.wrongMaxSizeValue.message} characters`, (): void => {
                 let valueOutOfRequiredSize: string = faker.string.alpha(requirementsSubmitForm.wrongMaxSizeValue.message);
 
-                basePage.fillInNameField(minValidValueName);
-                basePage.fillInEmailField(minValidValueEmail);
-                basePage.fillInPhoneField(minValidValuePhone);
-                basePage.fillInSubjectField(minValidValueSubject);
+                homePage.fillInNameField(minValidValueName);
+                homePage.fillInEmailField(minValidValueEmail);
+                homePage.fillInPhoneField(minValidValuePhone);
+                homePage.fillInSubjectField(minValidValueSubject);
 
-                basePage.fillInMessageInputArea(valueOutOfRequiredSize);
+                homePage.fillInMessageInputArea(valueOutOfRequiredSize);
 
-                basePage.submitTheForm();
-                basePage.checkAlertAboutWrongAmountOfCharactersForField('message');
+                homePage.submitTheForm();
+                homePage.checkAlertAboutWrongAmountOfCharactersForField('message');
             })
         })
     })
